@@ -11,9 +11,9 @@ viewers like Visual Studio to visualize the data.
 
 ## Generate a `.dgml` file
 1. Open the project in Visual Studio.
-2. In the `Program.cs` file, change the values under "Fields" if needed.
+2. In the `Program.cs` file, change the settings under "Fields" if needed.
 3. Click _Debug > Start Without Debugging_ to launch the app.
-4. The file is generated at `bin/Debug/net6.0/mod-dependencies.dgml` by default.
+4. Follow the on-screen instructions.
 
 ## View the dependency graph in Visual Studio
 First:
