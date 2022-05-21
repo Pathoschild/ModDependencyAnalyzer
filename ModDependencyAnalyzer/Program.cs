@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using Microsoft.Extensions.Configuration;
 using OpenSoftware.DgmlTools;
 using OpenSoftware.DgmlTools.Builders;
 using OpenSoftware.DgmlTools.Model;
@@ -21,34 +22,27 @@ namespace ModDependencyAnalyzer;
 internal static class Program
 {
     /*********
-    ** Fields
-    *********/
-    /// <summary>The absolute or relative path to the generated <c>.dgml</c> file.</summary>
-    private const string GeneratedFilePath = "mod-dependencies.dgml";
-
-    /// <summary>Whether to group mods by content pack, instead of adding a dependency link to their consuming mod.</summary>
-    private const bool GroupContentPacks = true;
-
-
-    /*********
     ** Public methods
     *********/
     /// <summary>Run the app logic.</summary>
     public static void Main()
     {
+        // read configuration
+        Program.ReadConfigFile(out string generatedFilePath, out bool groupContentPacks);
+
         // get mods
         DirectoryInfo modsFolder = Program.GetModsFolder();
         ModFolder[] mods = Program.GetInstalledMods(modsFolder.FullName).ToArray();
 
         // export .dgml file
-        DirectedGraph graph = Program.BuildDirectedGraph(mods, Program.GroupContentPacks);
-        Program.ExportToDgml(graph, Program.GeneratedFilePath);
+        DirectedGraph graph = Program.BuildDirectedGraph(mods, groupContentPacks);
+        Program.ExportToDgml(graph, generatedFilePath);
 
         // render image
         //Program.ConvertDgmlToPng(Program.GeneratedFilePath);
 
         // output
-        string filePath = Path.Combine(Environment.CurrentDirectory, Program.GeneratedFilePath);
+        string filePath = Path.Combine(Environment.CurrentDirectory, generatedFilePath);
         Console.WriteLine();
         Console.WriteLine($"Generated at {filePath}.");
         if (Program.InteractivelyChoose("Do you want to open the DGML file in its default editor? [y]es [n]o", new[] { "y", "n" }) == "y")
@@ -66,6 +60,20 @@ internal static class Program
     /*********
     ** Private methods
     *********/
+    /// <summary>Read the app settings from the <c>config.json</c> file.</summary>
+    /// <param name="generatedFilePath">The absolute or relative path to the generated <c>.dgml</c> file.</param>
+    /// <param name="groupContentPacks">Whether to group mods by content pack, instead of adding a dependency link to the mod that loads them.</param>
+    private static void ReadConfigFile(out string generatedFilePath, out bool groupContentPacks)
+    {
+        IConfigurationRoot config = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("config.json", optional: false)
+            .Build();
+
+        generatedFilePath = config.GetValue<string>("generated-file-path");
+        groupContentPacks = config.GetValue<bool>("group-content-packs");
+    }
+
     /// <summary>Interactively find the game's <c>Mods</c> folder.</summary>
     private static DirectoryInfo GetModsFolder()
     {

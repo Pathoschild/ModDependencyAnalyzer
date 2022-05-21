@@ -1,0 +1,13 @@
+﻿{
+    /**
+     * The path at which to save the DGML file. This can be an absolute path, or relative to the
+     * app folder.
+     */
+    "generated-file-path": "mod-dependencies.dgml",
+
+    /**
+     * Whether to group mods by content pack, instead of adding a dependency link to the mod that
+     * loads them.
+     */
+    "group-content-packs": true
+}

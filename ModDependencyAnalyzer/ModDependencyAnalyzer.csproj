@@ -7,6 +7,8 @@
 
   <ItemGroup>
     <PackageReference Include="DgmlImage" Version="1.2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="OpenSoftware.DgmlBuilder" Version="2.0.0" />
   </ItemGroup>
@@ -17,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="config.json" CopyToOutputDirectory="Always" />
     <None Update="lib\**\*" CopyToOutputDirectory="Always" />
   </ItemGroup>
 </Project>
