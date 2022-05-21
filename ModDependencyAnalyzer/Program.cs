@@ -46,13 +46,45 @@ internal static class Program
         // render image
         //Program.ConvertDgmlToPng(Program.GeneratedFilePath);
 
-        Console.WriteLine($"Generated in {Environment.CurrentDirectory}.");
+        // output
+        string filePath = Path.Combine(Environment.CurrentDirectory, Program.GeneratedFilePath);
+        Console.WriteLine();
+        Console.WriteLine($"Generated at {filePath}.");
+        if (Program.InteractivelyChoose("Do you want to open the DGML file in its default editor? [y]es [n]o", new[] { "y", "n" }) == "y")
+        {
+            Process.Start(
+                new ProcessStartInfo(filePath)
+                {
+                    UseShellExecute = true
+                }
+            );
+        }
     }
 
 
     /*********
     ** Private methods
     *********/
+    /// <summary>Interactively ask the user to choose a value.</summary>
+    /// <param name="message">The message to print.</param>
+    /// <param name="options">The allowed options (not case sensitive).</param>
+    /// <param name="indent">The indentation to prefix to output.</param>
+    private static string InteractivelyChoose(string message, string[] options, string indent = "")
+    {
+        while (true)
+        {
+            Console.WriteLine(indent + message);
+            Console.Write(indent);
+            string? input = Console.ReadLine()?.Trim().ToLowerInvariant();
+            if (input == null || !options.Contains(input))
+            {
+                Console.WriteLine($"{indent}That's not a valid option.");
+                continue;
+            }
+            return input;
+        }
+    }
+
     /// <summary>Get the mods installed in the given <c>Mods</c> folder.</summary>
     /// <param name="folderPath">The absolute path to the <c>Mods</c> folder to scan.</param>
     private static IEnumerable<ModFolder> GetInstalledMods(string folderPath)
