@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModDependencyAnalyzer", "ModDependencyAnalyzer\ModDependencyAnalyzer.csproj", "{22A42694-41C2-490C-A617-82B7C6E1E4F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".root", ".root", "{01C219B0-F13E-420A-8241-8763F7D33C59}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22A42694-41C2-490C-A617-82B7C6E1E4F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22A42694-41C2-490C-A617-82B7C6E1E4F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22A42694-41C2-490C-A617-82B7C6E1E4F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22A42694-41C2-490C-A617-82B7C6E1E4F8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F3CA3331-C243-4DA7-845E-9997B41BE50C}
+	EndGlobalSection
+EndGlobal

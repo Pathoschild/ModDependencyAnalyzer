@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DgmlImage" Version="1.2.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="OpenSoftware.DgmlBuilder" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SMAPI.Toolkit" HintPath="lib\SMAPI.Toolkit\SMAPI.Toolkit.dll" />
+    <Reference Include="SMAPI.Toolkit.CoreInterfaces" HintPath="lib\SMAPI.Toolkit\SMAPI.Toolkit.CoreInterfaces.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="lib\**\*" CopyToOutputDirectory="Always" />
+  </ItemGroup>
+</Project>
